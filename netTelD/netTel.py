@@ -34,7 +34,7 @@ class netTel(Daemon):
         log.setLevel(loglevel)
         # maximum size of one log should be 20 mb
         handler = logging.handlers.RotatingFileHandler(
-            "netTel.log", maxBytes=20971520, backupCount=5)
+            "/var/log/netTel/netTel.log", maxBytes=20971520, backupCount=5)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         log.addHandler(handler)
@@ -43,8 +43,8 @@ class netTel(Daemon):
 
         # folder where stompclt saves stuff
         # input message q
-        input_message_q_path = "/tmp/perfSonar-data/"
-        output_message_q_path = "/tmp/perfSonar-output/"
+        input_message_q_path = "/var/spool/netTel/input/"
+        output_message_q_path = "/var/spool/netTel/output/"
 
         # url for nn download
         nn_url = "https://cernbox.cern.ch/index.php/s/68IKwd2uI2uQM9J/download"

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
 mkdir /var/lib/netTel/
-mkdir /tmp/perfSonar-data/
-mkdir /tmp/perfSonar-output/
+mkdir /var/log/netTel/
+mkdir /var/spool/netTel/input/
+mkdir /var/spool/netTel/output/
+
