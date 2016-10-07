@@ -5,6 +5,8 @@ Daemon which implements netTel as described in : https://docs.google.com/present
 - Usage:
   * start with: ./netTelD.py start
   * stop with: ./netTelD.py stop
-  * or use the supplied netTelD.service to start/stop it via systemd with: systemctl start netTelD.service
-  
+  * or use the supplied netTelD.service to start/stop it via systemd with: systemctl start/stop netTelD.service
+
 The log can be found here: /var/lib/netTel/netTel.log
+
+For requirements check: (under construction)  https://docs.google.com/document/d/1ToY17b2JHOeKtQSarso97KRYrph7KALUVVRSy1JyniQ/edit?usp=sharing
