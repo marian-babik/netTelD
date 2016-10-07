@@ -5,10 +5,11 @@ import logging
 
 PIDFILE = '/var/run/netTelD.pid'
 WORKFOLDER = '/var/lib/netTel/'
+LOGFILE = '/var/log/netTel/netTel.log'
 
 if __name__ == "__main__":
 
-    daemon = netTel(PIDFILE, loglevel=logging.DEBUG, home_dir=WORKFOLDER, stdout=WORKFOLDER+'netTel.log', stderr=WORKFOLDER+'netTel.log')
+    daemon = netTel(PIDFILE, loglevel=logging.DEBUG, home_dir=WORKFOLDER, stdout=LOGFILE, stderr=LOGFILE)
 
     if len(sys.argv) == 2:
         if 'start' == sys.argv[1]:
