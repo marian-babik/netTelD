@@ -97,7 +97,6 @@ class netTel(Daemon):
                                                                                  base_data_meta_header_src_dest=data_meta_header_src_dest,
                                                                                  delete_messages_after_reading=True)
             reading_messages_time += time.time() - startTime
-
             # Processing Data and Computing predictions
             for key1 in data_src_dest.keys():
                 for key2 in data_src_dest[key1].keys():
@@ -114,7 +113,6 @@ class netTel(Daemon):
                     # calculate predictions
                     data_src_dest[key1][key2].calculate_predictions(nn_model, nn_scaler)
             reading_messages_and_calcing_time += time.time() - startTime
-
             # "send out" predictions
             # this still needs some "polishing"
             for key1 in data_src_dest.keys():
@@ -130,7 +128,6 @@ class netTel(Daemon):
                         mq_output.add_message(msg_out)
                         msg_counter += 1
                     data_src_dest[key1][key2].was_updated = False
-
             # so some house keeping
             deltaTime = time.time() - startTime
             messages_sum += numMessages
@@ -147,23 +144,27 @@ class netTel(Daemon):
                             count_full_conns += 1
                 messages_per_sec = messages_sum / total_used_time
                 reading_messages_percentage = (reading_messages_time / total_used_time) * 100
-                calculating_percentage = ((
-                                              reading_messages_and_calcing_time - reading_messages_time) / total_used_time) * 100
+                calculating_percentage = ((reading_messages_and_calcing_time - reading_messages_time) /
+                                          total_used_time) * 100
                 sending_messagespercentage = 100 - (reading_messages_percentage + calculating_percentage)
                 stat_msg = "Current statistics:"
                 stat_msg += "\n | Total connections seen: " + str(count_conns)
-                stat_msg += " | Connections with full buffers: " + str(count_full_conns) + " (" + str(round(100*(count_full_conns/count_conns))) + " %)"
+                try:
+                    stat_msg += " | Connections with full buffers: " + str(count_full_conns) + " (" + str(
+                                round(100*(count_full_conns/count_conns))) + " %)"
+                except ZeroDivisionError:
+                    stat_msg += " | Connections with full buffers: " + str(count_full_conns)
                 stat_msg += "\n | Messages read: " + str(messages_sum)
                 stat_msg += " | Messages sent: " + str(msg_counter)
                 stat_msg += "\n | Average processing speed: " + str(messages_per_sec) + " [messages/sec]"
                 stat_msg += "\n | Time spent reading messages: " + str(reading_messages_time) + " [sec] (" + str(
-                    round(reading_messages_percentage)) + " %)"
+                            round(reading_messages_percentage)) + " %)"
                 stat_msg += " | Time spent calculating: " + str(
-                    reading_messages_and_calcing_time - reading_messages_time) + " [sec] (" + str(
-                    round(calculating_percentage)) + " %)"
+                            reading_messages_and_calcing_time - reading_messages_time) + " [sec] (" + str(
+                            round(calculating_percentage)) + " %)"
                 stat_msg += "\n | Time spent sending messages: " + str(
-                    total_used_time - reading_messages_and_calcing_time) + " [sec] (" + str(
-                    round(sending_messagespercentage)) + " %)"
+                            total_used_time - reading_messages_and_calcing_time) + " [sec] (" + str(
+                            round(sending_messagespercentage)) + " %)"
                 log.info(stat_msg)
                 # reset statistics
                 messages_sum = 0
