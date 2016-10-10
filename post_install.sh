@@ -24,6 +24,6 @@ cd "$(dirname "$0")"
 cp -f netTelD.service /usr/lib/systemd/system/
 systemctl daemon-reload
 
-cp -f globalNN_for_netTel.h5 /var/lib/netTel/
-cp -f global_NN_for_netTel_scaler.pkl /var/lib/netTel/
+cp -f netTelD/globalNN_for_netTel.h5 /var/lib/netTel/
+cp -f netTelD/global_NN_for_netTel_scaler.pkl /var/lib/netTel/
 
