@@ -18,3 +18,12 @@ cat > ~/.keras/keras.json <<EOL
     "backend": "theano"
 }
 EOL
+
+# this should be done by the setup.py
+cd "$(dirname "$0")"
+cp -f netTelD.service /usr/lib/systemd/system/
+systemctl daemon-reload
+
+cp -f globalNN_for_netTel.h5 /var/lib/netTel/
+cp -f globalNN_for_netTel.h5 /var/lib/netTel/
+global_NN_for_netTel_scaler.pkl
