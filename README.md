@@ -10,9 +10,11 @@ Daemon which implements netTel as described in : https://docs.google.com/present
   * start: ./netTel.py start
   * etc.
 
-### Installation:
+### Installation
 See the bottom of the requirements document: https://docs.google.com/document/d/1ToY17b2JHOeKtQSarso97KRYrph7KALUVVRSy1JyniQ/edit?usp=sharing  (under construction) 
 
-### Log:
-
+### Log
 The log can be found here: /var/log/netTel/netTel.log
+
+### Monitoring
+See how the output of netTel performs in comparison to its two inputs: https://mig-graphite.cern.ch/grafana/dashboard/file/client.json?var-cluster=netmon&var-client=perfsonar-raw-histogram-owdelay&var-client=perfsonar-raw-packet-loss-rate&var-client=telemetry-perfsonar&var-top=8&from=now-3h&to=now
