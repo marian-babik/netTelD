@@ -4,8 +4,8 @@ Description=netTel daemon
 [Service]
 Type=forking
 PIDFile=/var/run/netTelD.pid
-ExecStart=/root/netTelD/netTelD.py start
-ExecStop=/root/netTelD/netTelD.py stop
+ExecStart=/root/netTelD/netTelD/netTelD.py start
+ExecStop=/root/netTelD/netTelD/netTelD.py stop
 
 [Install]
 WantedBy=multi-user.target
