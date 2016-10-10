@@ -46,9 +46,7 @@ class netTel(Daemon):
         input_message_q_path = "/var/spool/netTel/input/"
         output_message_q_path = "/var/spool/netTel/output/"
 
-        # url for nn download
-        nn_url = "https://cernbox.cern.ch/index.php/s/68IKwd2uI2uQM9J/download"
-        nn_scaler_url = "https://cernbox.cern.ch/index.php/s/sHXaEcVXDovJYzU/download"
+        # path to NN and scaler
         nn_file_path = "globalNN_for_netTel.h5"
         nn_scaler_file_path = "global_NN_for_netTel_scaler.pkl"
 
@@ -59,15 +57,6 @@ class netTel(Daemon):
         mq_output = DQS(path=output_message_q_path)
 
         log.info("Setting up global NN and scaler")
-        # download NN and its scaler
-        nn_download = urllib2.urlopen(nn_url)
-        with open(nn_file_path, 'wb') as output:
-            output.write(nn_download.read())
-
-        nn_scaler_download = urllib2.urlopen(nn_scaler_url)
-        with open(nn_scaler_file_path, 'wb') as output:
-            output.write(nn_scaler_download.read())
-
         # if we are later using multi threading, we need a specific lock here!
         # we will not want to integrate this into each dataStore, because the memory footprint is rather high
         nn_model = load_model(nn_file_path)
