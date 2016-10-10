@@ -209,6 +209,10 @@ class netTel(Daemon):
                 if dest not in data_src_dest[src].keys():
                     data_src_dest[src][dest] = DataStore()
                     data_meta_header_src_dest[src][dest] = {}
+                    # save the metadata, we will reuse it later
+                    data_meta_header_src_dest[src][dest]['meta'] = msgBody["meta"]
+                    data_meta_header_src_dest[src][dest]['header'] = msg.get_header()
+
                 if str(msg.get_header()['destination']) == '/topic/perfsonar.raw.histogram-owdelay':
                     # do stuff for the owd
                     data_src_dest[src][dest].rawData = self.readOWDMessage(msgBody, base_data=data_src_dest[src][dest].rawData)
@@ -217,9 +221,6 @@ class netTel(Daemon):
                     data_src_dest[src][dest].rawData = self.readPacketloss(msgBody, base_data=data_src_dest[src][dest].rawData)
                 # mark the data as updated
                 data_src_dest[src][dest].was_updated = True
-                # save the metadata, we will reuse it later
-                data_meta_header_src_dest[src][dest]['meta'] = msgBody["meta"]
-                data_meta_header_src_dest[src][dest]['header'] = msg.get_header()
                 if delete_messages_after_reading:
                     mq.remove(name)
                 else:
