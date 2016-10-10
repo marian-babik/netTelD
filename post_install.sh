@@ -25,5 +25,5 @@ cp -f netTelD.service /usr/lib/systemd/system/
 systemctl daemon-reload
 
 cp -f globalNN_for_netTel.h5 /var/lib/netTel/
-cp -f globalNN_for_netTel.h5 /var/lib/netTel/
-global_NN_for_netTel_scaler.pkl
+cp -f global_NN_for_netTel_scaler.pkl /var/lib/netTel/
+
