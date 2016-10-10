@@ -3,9 +3,12 @@ Daemon which implements netTel as described in : https://docs.google.com/present
 
 
 ### Usage:
-* start with: ./netTelD.py start
-* stop with: ./netTelD.py stop
-* or use the supplied netTelD.service to start/stop it via systemd with: systemctl start/stop netTelD.service
+* start: systemctl stop netTelD.service
+* stop: systemctl stop netTelD.service
+* status: systemctl status netTelD.service
+* alternativley you can start it directly as a daemon from the executable:
+  * start: ./netTel.py start
+  * etc.
 
 ### Installation:
 See the bottom of the requirements document: https://docs.google.com/document/d/1ToY17b2JHOeKtQSarso97KRYrph7KALUVVRSy1JyniQ/edit?usp=sharing  (under construction) 
