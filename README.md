@@ -2,14 +2,15 @@
 Daemon which implements netTel as described in : https://docs.google.com/presentation/d/1uqVGDOPo5-3Nh-RG8vp5PKpKqlQo2ZMNAimxqwf6bs0/edit#slide=id.g1781e444bf_0_10
 
 Currently and without optimization the script is able to process about 19~23
-messages per second. That is about twice as much as the message bus (ActiveMQ)
+messages per second on a low end system. That is about twice as much as the message bus (ActiveMQ)
 currently feeds as raw data.
+On our production system the script is able to processes about 30~35 messages per second. 
 
 ### Usage:
 * start: systemctl stop netTelD.service
 * stop: systemctl stop netTelD.service
 * status: systemctl status netTelD.service
-* alternativley you can start it directly as a daemon from the executable:
+* alternatively you can start it directly as a daemon from the executable:
   * start: ./netTel.py start
   * etc.
 
@@ -24,5 +25,5 @@ See how the output of netTel performs in comparison to its two inputs: https://m
 
 ### Machine requirements
 * Memory footprint With all (~5500) connections in buffer: < 500 MB
-* CPU usage: 1 CPU, with usage spikes up to ~70%
+* CPU usage: 1 CPU, with usage spikes up to ~50%
 * Disk: Maximum of about 25 MB
