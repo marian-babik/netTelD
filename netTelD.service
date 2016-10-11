@@ -3,7 +3,7 @@ Description=netTel daemon
 
 [Service]
 Type=forking
-systemctl daemon-reload
+Restart=on-abort
 PIDFile=/var/run/netTelD.pid
 ExecStart=/root/netTelD/netTelD/netTelD.py start
 ExecStop=/root/netTelD/netTelD/netTelD.py stop
