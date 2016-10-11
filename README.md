@@ -1,6 +1,9 @@
 # netTelD
 Daemon which implements netTel as described in : https://docs.google.com/presentation/d/1uqVGDOPo5-3Nh-RG8vp5PKpKqlQo2ZMNAimxqwf6bs0/edit#slide=id.g1781e444bf_0_10
 
+Currently and without optimization the script is able to process about 19~23
+messages per second. That is about twice as much as the message bus (ActiveMQ)
+currently feeds as raw data.
 
 ### Usage:
 * start: systemctl stop netTelD.service
@@ -18,3 +21,8 @@ The log can be found here: /var/log/netTel/netTel.log
 
 ### Monitoring
 See how the output of netTel performs in comparison to its two inputs: https://mig-graphite.cern.ch/grafana/dashboard/file/client.json?var-cluster=netmon&var-client=perfsonar-raw-histogram-owdelay&var-client=perfsonar-raw-packet-loss-rate&var-client=telemetry-perfsonar&var-top=8&from=now-3h&to=now
+
+### Machine requirements
+* Memory footprint With all (~5500) connections in buffer: <500 MB
+* CPU usage: 1 CPU, fluctuating usage with spikes up to ~70%
+* Disk: Maximum of about 25 MB
