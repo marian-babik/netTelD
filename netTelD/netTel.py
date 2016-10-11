@@ -32,9 +32,9 @@ class netTel(Daemon):
         # set up logging
         log = logging.getLogger('netTel_logger')
         log.setLevel(loglevel)
-        # maximum size of one log should be 20 mb
+        # maximum size of one log should be 2.5 mb
         handler = logging.handlers.RotatingFileHandler(
-            "/var/log/netTel/netTel.log", maxBytes=20971520, backupCount=5)
+            "/var/log/netTel/netTel.log", maxBytes=2621440, backupCount=5)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         log.addHandler(handler)
