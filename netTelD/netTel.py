@@ -34,7 +34,7 @@ class netTel(Daemon):
         log.setLevel(loglevel)
         # maximum size of one log should be 2.5 mb
         handler = logging.handlers.RotatingFileHandler(
-            "/var/log/netTel/netTel.log", maxBytes=2621440, backupCount=5)
+            "/var/log/netTel/netTel.log", maxBytes=2621440, backupCount=3)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         log.addHandler(handler)
@@ -128,6 +128,7 @@ class netTel(Daemon):
                         mq_output.add_message(msg_out)
                         msg_counter += 1
                     data_src_dest[key1][key2].was_updated = False
+
             # so some house keeping
             deltaTime = time.time() - startTime
             messages_sum += numMessages

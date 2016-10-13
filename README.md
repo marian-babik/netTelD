@@ -24,6 +24,6 @@ The log can be found here: /var/log/netTel/netTel.log
 See how the output of netTel performs in comparison to its two inputs: https://mig-graphite.cern.ch/grafana/dashboard/file/client.json?var-cluster=netmon&var-client=perfsonar-raw-histogram-owdelay&var-client=perfsonar-raw-packet-loss-rate&var-client=telemetry-perfsonar&var-top=8&from=now-3h&to=now
 
 ### Machine requirements
-* Memory footprint With all (~5500) connections in buffer: < 500 MB
+* Memory footprint With all (~5600) connections fully buffered: ~ 270 MB
 * CPU usage: 1 CPU, with usage spikes up to ~50%
 * Disk: Maximum of about 25 MB
