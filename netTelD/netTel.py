@@ -4,23 +4,22 @@ from __future__ import print_function
 from __future__ import division
 from messaging.queue.dqs import DQS
 import json
+import sys
 import numpy as np
 import pandas as pd
 import logging
 import time
-import urllib2
 import pickle
 import socket
 from keras.models import load_model
 import logging.handlers
-from daemon import Daemon
 from DataStore import DataStore
 
 
-class netTel(Daemon):
+class netTel(object):
 
-    def __init__(self, pidfile,  loglevel=logging.DEBUG, **kwargs):
-        Daemon.__init__(self, pidfile, **kwargs)
+    def __init__(self, loglevel=logging.DEBUG, **kwargs):
+        #Daemon.__init__(self, pidfile, **kwargs)
         self.loglevel = loglevel
 
     def run(self):
@@ -33,8 +32,9 @@ class netTel(Daemon):
         log = logging.getLogger('netTel_logger')
         log.setLevel(loglevel)
         # maximum size of one log should be 2.5 mb
-        handler = logging.handlers.RotatingFileHandler(
-            "/var/log/netTel/netTel.log", maxBytes=2621440, backupCount=3)
+        #handler = logging.handlers.RotatingFileHandler(
+        #    "/var/log/netTel/netTel.log", maxBytes=2621440, backupCount=3)
+        handler = logging.StreamHandler(stream=sys.stdout)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         log.addHandler(handler)
@@ -230,7 +230,6 @@ class netTel(Daemon):
                     mq.unlock(name)
         return data_src_dest, data_meta_header_src_dest
 
-
     def readPacketloss(self, message_body, base_data=pd.DataFrame(), appendix=""):
         data = base_data.copy(deep=True)
         for timestomp in message_body['datapoints'].keys():
@@ -261,5 +260,6 @@ class netTel(Daemon):
         median = values[index][0]
         return avg, std, median
 
-
+if __name__ == '__main__':
+    netTel().run()
 
