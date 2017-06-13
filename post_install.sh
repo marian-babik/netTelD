@@ -26,4 +26,6 @@ systemctl daemon-reload
 
 cp -f netTelD/globalNN_for_netTel.h5 /var/lib/netTel/
 cp -f netTelD/global_NN_for_netTel_scaler.pkl /var/lib/netTel/
+cp -f netTelD/globalNN_for_netTel.h5 /var/lib/netTel/globalnn_for_nettel.h5
+cp -f netTelD/global_NN_for_netTel_scaler.pkl /var/lib/netTel/global_nn_for_nettel_scaler.pkl
 
